@@ -9,7 +9,8 @@
     "strict": true,
     "baseUrl": "./src",
     "paths": {
-      "@routes": ["routes/"]
+      "@routes": ["routes/"],
+      "@utils/*": ["utils/*"]
     },
     "target": "es2017"
   },  

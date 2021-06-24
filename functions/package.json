@@ -2,6 +2,7 @@
   "name": "functions",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
+    "config:env:dev": "export $(cat .env.dev | xargs)",
     "build": "tsc",
     "serve": "npm run build && firebase emulators:start --only functions",
     "test": "jest",
@@ -29,6 +30,7 @@
     "@typescript-eslint/parser": "^3.8.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
     "eslint": "^7.6.0",
     "eslint-config-google": "^0.14.0",
     "eslint-import-resolver-alias": "^1.1.2",
@@ -40,7 +42,8 @@
     "typescript": "^3.8.0"
   },
   "_moduleAliases": {
-    "@routes": "lib/routes"
+    "@routes": "lib/routes",
+    "@utils": "lib/utils"
   },
   "private": true
 }

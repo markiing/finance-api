@@ -9,6 +9,7 @@ module.exports = {
       alias: {
         map: [
           ["@routes", "./src/routes"],
+          ["@utils", "./src/utils"],
         ],
         extensions: [".ts", ".js", ".jsx", ".json"],
       },
