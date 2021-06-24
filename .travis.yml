@@ -1,37 +1,16 @@
 language: node_js
-node_js: "14"
+node_js: '14'
+
+before_script:
+- npm install firebase-tools -g
+- npm install
+- npm run test
 
 script:
-  - cd functions
-  - npm install
-  - npm run lint
-  - npm run test
-  - npm run build
+- firebase use $FB_PROJECT_NAME
+- firebase deploy --only functions
 
-before_deploy:
-  - cd functions
-  - npm run build
-
--: &firebase_deploy_dev:
-  provider: firebase
-  token:
-    secure: y1E6n6ieBFCqSh6BSeMYb7goVIbpSG5Lxe2F/c40S6VMOMK+htsneMKPwyGDNttDRjByfmrVO9XeMWSZNxFEk7L9igzKsuZf7Bd4InPq5VuVfp/4FZ5ogFN2exejwLnJsQNrtIcGOlLIbYfHsG8yIyeQn7+NHF7egYniN1a7T87CGAN3yZMwwraM0kdCLwpk7euLqI3XHH/RmZQ4DE5Y5nE/9pE0IeDqy3+bhek4Zvf9dy80sS9/Bj5x8N6bBcwLwgDbiZAGNWt3Po6R8rCsFa92k9d6UXBc6tQqLzTvHsD/KpawBCo/H4Pdc8DfHqlMbd1pz6Zqopc29PC57pfYsxkzKfXoXy6VH+d2tP2N+rGwdEkudbfGflXasew6KUSpl3mwSEb47PBFjFYQhzSOdWUsqsJHHWz1+wmtK/cDcLHy5o5sBTEyV/hzVNyvAjOzMkw4dad961KxJm/AAuZhbT5kKPbrELammuc95KIM+F/m09IVG3rwQdUH6SSLZ5FcRmj5q+8GqZM6Jur8Vqikf+4NiP8vw0FseRDMy1W2Fqf5azsaG6fIS3JnxqLflwN/YpEIJGWucu5OAqU5hPPA/WrPuavbCaokMxANAbyJp2KmS69QJRW5R7AFJsqOz0HV+HgeiWSCHyeSiUw/tNcN0UeB/OwSQD8WjbZ+xyLECD8=
-  project: finances-dev-b34ae
-
--: &firebase_deploy_prod:
-  provider: firebase
-  token:
-    secure: y1E6n6ieBFCqSh6BSeMYb7goVIbpSG5Lxe2F/c40S6VMOMK+htsneMKPwyGDNttDRjByfmrVO9XeMWSZNxFEk7L9igzKsuZf7Bd4InPq5VuVfp/4FZ5ogFN2exejwLnJsQNrtIcGOlLIbYfHsG8yIyeQn7+NHF7egYniN1a7T87CGAN3yZMwwraM0kdCLwpk7euLqI3XHH/RmZQ4DE5Y5nE/9pE0IeDqy3+bhek4Zvf9dy80sS9/Bj5x8N6bBcwLwgDbiZAGNWt3Po6R8rCsFa92k9d6UXBc6tQqLzTvHsD/KpawBCo/H4Pdc8DfHqlMbd1pz6Zqopc29PC57pfYsxkzKfXoXy6VH+d2tP2N+rGwdEkudbfGflXasew6KUSpl3mwSEb47PBFjFYQhzSOdWUsqsJHHWz1+wmtK/cDcLHy5o5sBTEyV/hzVNyvAjOzMkw4dad961KxJm/AAuZhbT5kKPbrELammuc95KIM+F/m09IVG3rwQdUH6SSLZ5FcRmj5q+8GqZM6Jur8Vqikf+4NiP8vw0FseRDMy1W2Fqf5azsaG6fIS3JnxqLflwN/YpEIJGWucu5OAqU5hPPA/WrPuavbCaokMxANAbyJp2KmS69QJRW5R7AFJsqOz0HV+HgeiWSCHyeSiUw/tNcN0UeB/OwSQD8WjbZ+xyLECD8=
-  project: finance-api-3ca76
-
-deploy:
-  - <<: *firebase_deploy_dev
-    on:
-      all_branches: true
-      condition: $TRAVIS_BRANCH != master
-    upload-dir: snapshot/${TRAVIS_COMMIT::7}
-
-  - <<: *firebase_deploy_prod
-    on:
-      tags: true
-    upload-dir: ${TRAVIS_TAG:1}
+branches:
+  only:
+    - main
+    - dev
