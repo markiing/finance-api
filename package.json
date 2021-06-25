@@ -6,7 +6,7 @@
     "watch": "tsc --watch",
     "test": "jest",
     "shell": "npm run build && firebase functions:shell",
-    "start": "docker-compose up -d --renew-anon-volumes && npm run watch",
+    "start": "docker-compose up -d --renew-anon-volumes && npm run watch"
   },
   "engines": {
     "node": "14"
