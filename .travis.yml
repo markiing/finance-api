@@ -6,9 +6,11 @@ before_script:
 - npm install
 - npm run test
 
-deploy:
-  - provider: script
-    script: firebase use $FB_PROJECT_ID && firebase deploy --only functions
-    on:
-      all_branches: true
-      condition: $TRAVIS_BRANCH =~ ^(main|dev)$
+script:
+- firebase use $FB_PROJECT_ID
+- firebase deploy --only functions
+
+branches:
+  only:
+    - main
+    - dev
