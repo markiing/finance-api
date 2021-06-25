@@ -3,11 +3,10 @@
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
-    "serve": "npm run build && firebase emulators:start --only functions",
+    "watch": "tsc --watch",
     "test": "jest",
     "shell": "npm run build && firebase functions:shell",
-    "start": "npm run shell",
-    "logs": "firebase functions:log"
+    "start": "docker-compose up -d --renew-anon-volumes && npm run watch",
   },
   "engines": {
     "node": "14"
