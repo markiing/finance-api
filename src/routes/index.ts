@@ -1,9 +1,11 @@
 import {Router as expressRouter} from "express";
+import Firebase from '../datasource'
 
 const router = expressRouter();
 
-router.get("/ola", (req, res) => {
-  res.send("ola mundo");
+router.get("/ola", async (req, res, next) => {
+  const t = await Firebase.getInstance().get("/variables")
+  res.send(t)
 });
 
 

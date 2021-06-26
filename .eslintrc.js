@@ -10,6 +10,7 @@ module.exports = {
           map: [
             ["@routes", "./src/routes"],
             ["@utils", "./src/utils"],
+            ["@datasource", "./src/datasource"],
           ],
           extensions: [".ts", ".js", ".jsx", ".json"],
         },

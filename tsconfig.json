@@ -10,7 +10,8 @@
     "baseUrl": "./src",
     "paths": {
       "@routes": ["routes/"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@datasource": ["datasource/"]
     },
     "target": "es2017"
   },  

@@ -6,7 +6,7 @@
     "watch": "tsc --watch",
     "test": "jest",
     "shell": "npm run build && firebase functions:shell",
-    "start": "docker-compose up -d --renew-anon-volumes && npm run watch"
+    "start": "firebase emulators:start && npm run watch"
   },
   "engines": {
     "node": "14"
@@ -43,6 +43,7 @@
   },
   "_moduleAliases": {
     "@routes": "lib/routes",
-    "@utils": "lib/utils"
+    "@utils": "lib/utils",
+    "@datasource": "lib/datasource"
   }
 }

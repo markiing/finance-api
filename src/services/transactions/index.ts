@@ -4,4 +4,4 @@ const doCalculate = (a: number, b:number) : number => {
   return a+b;
 };
 
-export default doCalculate;
+export default doCalculate
